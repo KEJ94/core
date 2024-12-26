@@ -1,14 +1,17 @@
 package hello.core.member;
 
+import hello.core.AutoAppConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 public class MemberServiceTest {
-    
-    MemberService memberService = new MemberServiceImpl();
-    
     @Test
     void join(){
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
+        MemberService memberService = ac.getBean(MemberService.class);
         //given
         Member member = new Member(1L, "memberA", Grade.VIP);
         //when
